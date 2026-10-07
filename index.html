@@ -3,9 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Web de Tareas</title>
 
 <style>
+
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -30,7 +36,37 @@ body {
 
 h1 {
     margin-top: 0;
+    font-size: 32px;
 }
+
+.descripcion {
+    color: #666;
+    font-size: 17px;
+}
+
+/* CUADRADO NO SOY UN ROBOT */
+
+.robot {
+    background: #f5f5f5;
+    color: #222;
+    padding: 15px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: fit-content;
+    margin: 25px auto;
+    font-size: 16px;
+    border: 1px solid #ddd;
+}
+
+.robot input {
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+}
+
+/* CÓDIGO */
 
 .codigo {
     background: #f1f1f1;
@@ -41,6 +77,8 @@ h1 {
     letter-spacing: 5px;
     margin: 20px 0;
 }
+
+/* BOTÓN */
 
 button {
     background: #667eea;
@@ -57,10 +95,25 @@ button:hover {
     opacity: 0.85;
 }
 
-a {
-    text-decoration: none;
-    color: white;
+button:disabled {
+    background: #aaa;
+    cursor: not-allowed;
 }
+
+/* MENSAJE */
+
+#mensaje {
+    margin-top: 15px;
+    font-weight: bold;
+    min-height: 22px;
+}
+
+footer {
+    margin-top: 25px;
+    color: #888;
+    font-size: 13px;
+}
+
 </style>
 </head>
 
@@ -70,7 +123,9 @@ a {
 
     <h1>🎒 WEB DE TAREAS</h1>
 
-    <p>Accede a la web de tareas del colegio</p>
+    <p class="descripcion">
+        Accede a la web de tareas del colegio
+    </p>
 
     <div class="codigo">
         8624
@@ -78,11 +133,72 @@ a {
 
     <p>🔑 Código de acceso</p>
 
-    <a href="https://tareas-adrimaker.netlify.app/" target="_blank">
-        <button>🚀 ABRIR WEB DE TAREAS</button>
-    </a>
+    <!-- NO SOY UN ROBOT -->
+
+    <div class="robot">
+
+        <input
+            type="checkbox"
+            id="robot"
+            onchange="comprobarRobot()"
+        >
+
+        <label for="robot">
+            No soy un robot
+        </label>
+
+    </div>
+
+    <button
+        id="boton"
+        disabled
+        onclick="abrirWeb()"
+    >
+        🚀 ABRIR WEB DE TAREAS
+    </button>
+
+    <div id="mensaje"></div>
+
+    <footer>
+        © 2026 - Web de Tareas
+    </footer>
 
 </div>
+
+<script>
+
+function comprobarRobot() {
+
+    const robot = document.getElementById("robot");
+    const boton = document.getElementById("boton");
+    const mensaje = document.getElementById("mensaje");
+
+    if (robot.checked) {
+
+        boton.disabled = false;
+
+        mensaje.innerHTML = "✅ Verificación completada";
+        mensaje.style.color = "green";
+
+    } else {
+
+        boton.disabled = true;
+
+        mensaje.innerHTML = "";
+
+    }
+}
+
+function abrirWeb() {
+
+    window.open(
+        "https://tareas-adrimaker.netlify.app/",
+        "_blank"
+    );
+
+}
+
+</script>
 
 </body>
 </html>
